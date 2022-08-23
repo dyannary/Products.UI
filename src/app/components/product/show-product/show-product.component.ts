@@ -14,7 +14,7 @@ export class ShowProductComponent implements OnInit {
   constructor(private service:ProductApiService) { }
 
   ngOnInit(): void {
-    this.productList$ = this.service.getProductList();
+ //  this.productList$ = this.service.getAllProducts();
   }
 
 }
