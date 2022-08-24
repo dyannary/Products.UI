@@ -10,10 +10,13 @@ import { ProductApiService } from './services/product-api.service';
 export class AppComponent implements OnInit {
   title = 'Products';
   products: Product[] = [];
+  product: Product = {
+    id: '',
+    name: '',
+    price: ''
+    }
+  constructor(private productService: ProductApiService) {}
 
-  constructor(private productService: ProductApiService) {
-
-  }
   ngOnInit(): void {
     this.getAllProducts();
   }
@@ -26,4 +29,40 @@ export class AppComponent implements OnInit {
       }
     );
   }
+  
+  onSubmit() {
+    if(this.product.id === '') {
+      this.productService.addProduct(this.product)
+      .subscribe(
+        response => {
+          this.getAllProducts();
+          this.product = {
+            id: '',
+            name: '',
+            price: ''
+          };
+        }
+        );
+    } else {
+      this.updateProduct(this.product);
+    }
+    //console.log(this.product);
+    }
+    
+    deleteProduct(id: string) {
+      this.productService.deleteProduct(id)
+      .subscribe(
+        response => {
+          this.getAllProducts();
+        }
+      );
+    }
+
+    populateForm(product: Product) {
+      this.product = product; 
+    }
+
+    updateProduct(product: Product) {
+      
+    }
 }

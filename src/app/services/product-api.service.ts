@@ -9,7 +9,7 @@ import { Product } from '../models/product.model';
 })
 export class ProductApiService {
 
-  readonly productAPIUrl = "https://localhost:5001/Api/Product";
+  readonly productAPIUrl = "https://localhost:5001/api/Product";
 
   constructor(private http:HttpClient) { }
 
@@ -20,6 +20,15 @@ export class ProductApiService {
   getAllProducts(): Observable<Product[]>
   {
     return this.http.get<Product[]>(this.productAPIUrl);
+  }
+
+  addProduct(product: Product): Observable<Product> {
+    //product.id = 9;
+    return this.http.post<Product>(this.productAPIUrl, product);
+  }
+
+  deleteProduct(id: string): Observable<Product> {
+    return this.http.delete<Product>(this.productAPIUrl + '/' + id);
   }
 
  /* addProduct(data:any) {
