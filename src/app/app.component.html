@@ -32,8 +32,8 @@
             <th class="price-of-product">Price</th>
             </thead>
                 <tr *ngFor="let product of products">
-                    <div (click)="populateForm(product)" class="product-row">
-                        <div class="product-row-details">
+                    <div class="product-row">
+                        <div class="product-row-details" (click)="populateForm(product)">
                             <td>{{product.id}}</td>
                             <td class="product-name-list">{{product.name}}</td>
                             <td class="product-price-list">{{product.price}}</td>
