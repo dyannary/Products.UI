@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'Products';
   products: Product[] = [];
   product: Product = {
-    id: '',
+    id: 0,
     name: '',
     price: ''
     }
@@ -31,25 +31,20 @@ export class AppComponent implements OnInit {
   }
   
   onSubmit() {
-    if(this.product.id === '') {
+    if(this.product.id === 0) {
       this.productService.addProduct(this.product)
       .subscribe(
         response => {
           this.getAllProducts();
-          this.product = {
-            id: '',
-            name: '',
-            price: ''
-          };
         }
         );
+        console.log(this.product);
     } else {
       this.updateProduct(this.product);
     }
-    //console.log(this.product);
     }
     
-    deleteProduct(id: string) {
+    deleteProduct(id: number) {
       this.productService.deleteProduct(id)
       .subscribe(
         response => {
@@ -58,11 +53,19 @@ export class AppComponent implements OnInit {
       );
     }
 
-    populateForm(product: Product) {
-      this.product = product; 
+    populateList(product: Product) {
+      this.product = product;
     }
 
     updateProduct(product: Product) {
-      
+  
+    }
+
+    getValue() {
+      console.log(this.product);
+    }
+
+    resetValue(product: Product) {
+
     }
 }

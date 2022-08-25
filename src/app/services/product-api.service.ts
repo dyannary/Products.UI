@@ -13,9 +13,9 @@ export class ProductApiService {
 
   constructor(private http:HttpClient) { }
 
- /* getProductList():Observable<any[]> {
-    return this.http.get<any>(this.productAPIUrl + '/Product');
-  } */
+  getProduct(id:number): Observable<Product> {
+    return this.http.get<Product>(this.productAPIUrl + '/' + id);
+  }
 
   getAllProducts(): Observable<Product[]>
   {
@@ -23,23 +23,14 @@ export class ProductApiService {
   }
 
   addProduct(product: Product): Observable<Product> {
-    //product.id = 9;
     return this.http.post<Product>(this.productAPIUrl, product);
   }
 
-  deleteProduct(id: string): Observable<Product> {
+  deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(this.productAPIUrl + '/' + id);
   }
 
- /* addProduct(data:any) {
-    return this.http.post(this.productAPIUrl + '/Product', data);
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(this.productAPIUrl + '/' + product.id, product);
   }
-
-  updateProduct(data:any) {
-    return this.http.put(this.productAPIUrl + '/Product', data);
-  }
-
-  deleteProduct(id:number|string) {
-    return this.http.delete(this.productAPIUrl + `/Product/${id}`);
-  }*/
 }
