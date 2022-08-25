@@ -58,7 +58,12 @@ export class AppComponent implements OnInit {
     }
 
     updateProduct(product: Product) {
-  
+      this.productService.updateProduct(product)
+      .subscribe(
+        response => {
+          this.getAllProducts();
+        }
+      );
     }
 
     getValue() {

@@ -31,6 +31,6 @@ export class ProductApiService {
   }
 
   updateProduct(product: Product): Observable<Product> {
-    return this.http.put<Product>(this.productAPIUrl + '/' + product.id, product);
+    return this.http.put<Product>(this.productAPIUrl + '/' , product);
   }
 }
